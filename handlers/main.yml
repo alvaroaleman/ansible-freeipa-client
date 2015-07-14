@@ -1,0 +1,9 @@
+---
+# handlers file for role-freeipa-client
+#
+- name: restart sssd
+  tags: sssd
+  become: true
+  service:
+    name=sssd
+    state=restarted

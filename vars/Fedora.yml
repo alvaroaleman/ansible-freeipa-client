@@ -1,0 +1,3 @@
+ansible_pkg_mgr: 'dnf'
+packages:
+ - freeipa-client
