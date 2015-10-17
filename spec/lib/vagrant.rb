@@ -11,7 +11,7 @@ class Vagrant
     c = `vagrant ssh-config`
     if c != ''
       c.each_line do |l|
-        if m = /HostName (.*)/.match(l)
+        if m = /Hostname (.*)/.match(l)
           @ssh_host = m[1]
         elsif m = /User (.*)/.match(l)
           @ssh_user = m[1]

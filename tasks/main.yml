@@ -1,5 +1,5 @@
 ---
-# tasks file for role-freeipa-client
+# tasks file for ansible-freeipa-client
 
 - name: Assert supported platform
   tags: assertion

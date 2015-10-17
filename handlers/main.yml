@@ -1,5 +1,5 @@
 ---
-# handlers file for role-freeipa-client
+# handlers file for ansible-freeipa-client
 #
 - name: restart sssd
   tags: sssd
