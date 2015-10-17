@@ -32,5 +32,5 @@ task :suite => [
   :up,
   :provision,
   :spec,
-#  :clean
+  :clean
 ]
