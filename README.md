@@ -44,33 +44,17 @@ Running integration tests requires a number of dependencies being
 installed. As this role uses Ruby RSpec there is the need to have
 Ruby with rake and bundler available.
 
-    # install role specific dependencies with bundler
+    # Install role specific dependencies with bundler
     bundle install
 
 <!-- -->
 
-    #Not tested: run the complete test suite with Docker
+    # Run the complete test suite with Vagrant
+    source envvars-vagrant.sample
     rake suite
 
-<!-- -->
-
-    #Recommended: run the complete test suite with Vagrant
-    RAKE_ANSIBLE_USE_VAGRANT=1 rake suite
-
-The settings required to test this role can be configured using environment variables, e.g.:
-
-    export IPA_TEST_VAGRANT_BOXNAME=centos/7
-    export IPA_TEST_SERVER=ipa-server.example.com
-    export IPA_TEST_DOMAIN=example.com
-    export IPA_TEST_DNS_SERVER=10.10.10.1
-    export IPA_TEST_ENROLL_USER=admin
-    export IPA_TEST_ENROLL_PASS=foobar
-    export IPA_TEST_HOSTNAME=vagrant.example.com
-
-Also, there are some additional settings that will be used to test proper functionality if present:
-
-    export IPA_TEST_EXISTING_USER=example_user
-    export IPA_TEST_EXISTING_USER_SUDO_PRIVILEGES='\(ALL : ALL\) ALL' #this is interpreted as regexp, so escaping is necessary
+The settings required to test this role are configured using environment variables,
+samples can be found in the ``envvars-vagrant.sample`` file.
 
 ## Author information
 
