@@ -6,11 +6,7 @@ require 'rspec/core/rake_task'
 #   directory.
 # Add the rake/ directory to the ruby $LOAD_PATH.
 $:.unshift File.dirname(__FILE__) + '/rake'
-if ENV['RAKE_ANSIBLE_USE_VAGRANT']
-  require 'vagrant'
-else
-  require 'docker'
-end
+require 'vagrant'
 
 
 desc "Run integration tests with serverspec"
