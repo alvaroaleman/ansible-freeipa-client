@@ -1,4 +1,4 @@
-# role-freeipa-client
+# ansible-freeipa-client
 
 ## Description
 
@@ -29,7 +29,7 @@ None
 
     - hosts: all
       roles:
-         - { role: role-freeipa-client }
+         - { role: ansible-freeipa-client }
 
 ## License
 
