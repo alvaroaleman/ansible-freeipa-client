@@ -7,3 +7,10 @@
   service:
     name=sssd
     state=restarted
+
+- name: restart ssh
+  tags: sssd
+  become: true
+  service:
+    name=ssh
+    state=restarted
