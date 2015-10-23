@@ -12,7 +12,9 @@
     - ubuntu
     - sssd
   become: true
-  notify: restart sssd
+  notify: 
+    - restart sssd
+    - restart ssh
   lineinfile:
     dest=/etc/sssd/sssd.conf
     regexp='^services.*'
