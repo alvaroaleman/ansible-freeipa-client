@@ -6,8 +6,6 @@ This role allows to join clients to an ipa domain
 
 ## Requirements
 
-### Operating System
-
 * CentOS 7
 * Fedora 22
 * Ubuntu Trusty
@@ -17,23 +15,30 @@ This role allows to join clients to an ipa domain
 * ``hostname``: The hostname to use for the client (string, mandatory)
 * ``server``: IP/Hostname of IPA server to use (string, mandatory)
 * ``domain``: Domain to use (string, mandatory)
+* ``enroll_user``: Username to enroll host in domain (string, mandatory)
+* ``enroll_pass``: Password to enroll host in domain (string, mandatory)
 * ``dns_server``: DNS server to configure. This will not do anything if variable is empty (string)
-* ``enroll_user``: Username to enroll host in domain
-* ``enroll_pass``: Password to enroll host in domain
-
-## Dependencies
-
-None
 
 ## Example Playbook
 
-    - hosts: all
-      roles:
-         - { role: ansible-freeipa-client }
+```yaml
+- hosts: all
+  roles:
+     - { role: ansible-freeipa-client }
+```
 
 ## License
 
 GNU AFFERO GENERAL PUBLIC LICENSE Version 3
+
+## Contributing
+
+If you want to contribute to this repository please be aware that this
+project uses a [gitflow](http://nvie.com/posts/a-successful-git-branching-model/)
+workflow with the next release branch called ``next``.
+
+Please fork this repository and create a local branch split off of the ``next``
+branch and create pull requests back to the origin ``next`` branch.
 
 ## Integration testing
 
@@ -44,14 +49,14 @@ Running integration tests requires a number of dependencies being
 installed. As this role uses Ruby RSpec there is the need to have
 Ruby with rake and bundler available.
 
-    # Install role specific dependencies with bundler
-    bundle install
+```bash
+# Install role specific dependencies with bundler
+bundle install
 
-<!-- -->
-
-    # Run the complete test suite with Vagrant
-    source envvars-vagrant.sample
-    rake suite
+# Run the complete test suite with Vagrant
+source envvars-vagrant.sample
+rake suite
+```
 
 The settings required to test this role are configured using environment variables,
 samples can be found in the ``envvars-vagrant.sample`` file.
