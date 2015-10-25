@@ -1,3 +1,4 @@
+freeipaclient_install_command: '/sbin/ipa-client-install'
 ansible_pkg_mgr: 'dnf'
 packages:
  - freeipa-client

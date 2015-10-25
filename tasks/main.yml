@@ -20,11 +20,11 @@
     - dns
     - freeipaclient
   become: true
-  when: dns_server is defined
+  when: freeipaclient_dns_server is defined
   lineinfile:
     state=present
     regexp='^nameserver.+'
-    line="nameserver {{ dns_server }}"
+    line="nameserver {{ freeipaclient_dns_server }}"
     dest=/etc/resolv.conf
 
 - name: Update cache
@@ -47,7 +47,7 @@
   tags:
     - enroll
     - freeipaclient
-  register: ipaconf
+  register: freeipaclient_ipaconf
   always_run: true
   stat:
     path=/etc/ipa/default.conf
@@ -57,20 +57,20 @@
     - enroll
     - freeipaclient
   become: true
-  when: not ipaconf.stat.exists
-  register: enrollment
-  command: "{{ ipa_install_command }}
-          {{'--hostname=' + hostname  if hostname is defined else ''}}
-          --server={{ server }}
-          --domain={{ domain }}
-          --principal={{ enroll_user }}
-          --password={{ enroll_pass }}
+  when: not freeipaclient_ipaconf.stat.exists
+  register: freeipaclient_enrollment
+  command: "{{ freeipaclient_install_command }}
+          {{'--hostname=' + freeipaclient_hostname  if freeipaclient_hostname is defined else ''}}
+          --server={{ freeipaclient_server }}
+          --domain={{ freeipaclient_domain }}
+          --principal={{ freeipaclient_enroll_user }}
+          --password={{ freeipaclient_enroll_pass }}
           --ssh-trust-dns
           --mkhomedir
           --enable-dns-updates
           --unattended
-          {{ '--no-ntp' if not enable_ntp else ''}}
-          {{ '--force-join' if force_join else ''}}"
+          {{ '--no-ntp' if not freeipaclient_enable_ntp else ''}}
+          {{ '--force-join' if freeipaclient_force_join else ''}}"
 
 - name: Include Ubuntu specific tasks
   tags:

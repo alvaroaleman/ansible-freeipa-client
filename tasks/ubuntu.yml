@@ -14,7 +14,7 @@
     - sssd
     - freeipaclient
   become: true
-  when: enrollment|changed or ipaconf.stat.exists
+  when: freeipaclient_enrollment|changed or freeipaclient_ipaconf.stat.exists
   notify: 
     - restart sssd
     - restart ssh

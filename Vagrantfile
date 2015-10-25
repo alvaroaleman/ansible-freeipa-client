@@ -40,19 +40,19 @@ Vagrant.configure(VAGRANT_API_VERSION) do |config|
       end
 
       dnsvars = {
-        server: ENV['IPA_TEST_SERVER'],
-        domain: ENV['IPA_TEST_DOMAIN'],
-        dns_server: ENV['IPA_TEST_DNS_SERVER'],
-        enroll_user: ENV['IPA_TEST_ENROLL_USER'],
-        enroll_pass: ENV['IPA_TEST_ENROLL_PASS'],
-        hostname: ENV['IPA_TEST_HOSTNAME']
+        freeipaclient_server: ENV['IPA_TEST_SERVER'],
+        freeipaclient_domain: ENV['IPA_TEST_DOMAIN'],
+        freeipaclient_dns_server: ENV['IPA_TEST_DNS_SERVER'],
+        freeipaclient_enroll_user: ENV['IPA_TEST_ENROLL_USER'],
+        freeipaclient_enroll_pass: ENV['IPA_TEST_ENROLL_PASS'],
+        freeipaclient_hostname: ENV['IPA_TEST_HOSTNAME']
       }
       nodnsvars = {
-        server: ENV['IPA_TEST_SERVER'],
-        domain: ENV['IPA_TEST_DOMAIN'],
-        enroll_user: ENV['IPA_TEST_ENROLL_USER'],
-        enroll_pass: ENV['IPA_TEST_ENROLL_PASS'],
-        hostname: ENV['IPA_TEST_HOSTNAME']
+        freeipaclient_server: ENV['IPA_TEST_SERVER'],
+        freeipaclient_domain: ENV['IPA_TEST_DOMAIN'],
+        freeipaclient_enroll_user: ENV['IPA_TEST_ENROLL_USER'],
+        freeipaclient_enroll_pass: ENV['IPA_TEST_ENROLL_PASS'],
+        freeipaclient_hostname: ENV['IPA_TEST_HOSTNAME']
       }
 
       if ENV['IPA_TEST_DNS_SERVER']

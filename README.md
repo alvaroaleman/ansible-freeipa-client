@@ -12,14 +12,14 @@ This role allows to join clients to an ipa domain
 
 ## Role Variables
 
-* ``server``: IP/Hostname of IPA server to use (string, mandatory)
-* ``domain``: Domain to use (string, mandatory)
-* ``enroll_user``: Username to enroll host in domain (string, mandatory)
-* ``enroll_pass``: Password to enroll host in domain (string, mandatory)
-* ``hostname``: The hostname to use for the client (string, default: output of ``uname -n``)
-* ``dns_server``: DNS server to configure. This will not do anything if variable is empty (string)
-* ``force_join``: Whether to overwrite an already existing host entry of requested name (boolean, default: ``false``)
-* ``enable_ntp``: Whether to enable ntp. Kerberos won't work if the time of master and client drift too much (boolean, default: ``true``)
+* ``freeipaclient_server``: IP/Hostname of IPA server to use (string, mandatory)
+* ``freeipaclient_domain``: Domain to use (string, mandatory)
+* ``freeipaclient_enroll_user``: Username to enroll host in domain (string, mandatory)
+* ``freeipaclient_enroll_pass``: Password to enroll host in domain (string, mandatory)
+* ``freeipaclient_hostname``: The hostname to use for the client (string, default: output of ``uname -n``)
+* ``freeipaclient_dns_server``: DNS server to configure. This will not do anything if variable is empty (string)
+* ``freeipaclient_force_join``: Whether to overwrite an already existing host entry of requested name (boolean, default: ``false``)
+* ``freeipaclient_enable_ntp``: Whether to enable ntp. Kerberos won't work if the time of master and client drift too much (boolean, default: ``true``)
 
 ## Example Playbook
 

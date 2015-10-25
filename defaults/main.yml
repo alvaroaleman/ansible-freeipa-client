@@ -1,5 +1,4 @@
 ---
 # defaults file for ansible-freeipa-client
-ipa_install_command: '/sbin/ipa-client-install'
-force_join: false
-enable_ntp: true
+freeipaclient_force_join: false
+freeipaclient_enable_ntp: true
