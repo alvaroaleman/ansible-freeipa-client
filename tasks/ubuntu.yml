@@ -12,6 +12,7 @@
     - ubuntu
     - sssd
   become: true
+  when: enrollment|changed or ipaconf.stat.exists
   notify: 
     - restart sssd
     - restart ssh

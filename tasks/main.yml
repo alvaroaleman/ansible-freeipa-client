@@ -37,6 +37,7 @@
 - name: Check if host is enrolled
   tags: enroll
   register: ipaconf
+  always_run: true
   stat:
     path=/etc/ipa/default.conf
 
@@ -44,6 +45,7 @@
   tags: enroll
   become: true
   when: not ipaconf.stat.exists
+  register: enrollment
   command: "{{ ipa_install_command }}
           --server={{ server }}
           --domain={{ domain }}
