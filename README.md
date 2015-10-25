@@ -19,6 +19,7 @@ This role allows to join clients to an ipa domain
 * ``hostname``: The hostname to use for the client (string, default: output of ``uname -n``)
 * ``dns_server``: DNS server to configure. This will not do anything if variable is empty (string)
 * ``force_join``: Whether to overwrite an already existing host entry of requested name (boolean, default: ``false``)
+* ``enable_ntp``: Whether to enable ntp. Kerberos won't work if the time of master and client drift too much (boolean, default: ``true``)
 
 ## Example Playbook
 

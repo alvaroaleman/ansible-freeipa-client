@@ -56,6 +56,7 @@
           --mkhomedir
           --enable-dns-updates
           --unattended
+          {{ '--no-ntp' if not enable_ntp else ''}}
           {{ '--force-join' if force_join else ''}}"
 
 - name: Include Ubuntu specific tasks
