@@ -38,7 +38,8 @@ Vagrant.configure(VAGRANT_API_VERSION) do |config|
       ::File.directory?('.vagrant/provisioners/ansible/inventory/') do
         ansible.inventory_path = '.vagrant/provisioners/ansible/inventory/'
       end
-      ansible.extra_vars = {
+
+      dnsvars = {
         server: ENV['IPA_TEST_SERVER'],
         domain: ENV['IPA_TEST_DOMAIN'],
         dns_server: ENV['IPA_TEST_DNS_SERVER'],
@@ -46,6 +47,20 @@ Vagrant.configure(VAGRANT_API_VERSION) do |config|
         enroll_pass: ENV['IPA_TEST_ENROLL_PASS'],
         hostname: ENV['IPA_TEST_HOSTNAME']
       }
+      nodnsvars = {
+        server: ENV['IPA_TEST_SERVER'],
+        domain: ENV['IPA_TEST_DOMAIN'],
+        enroll_user: ENV['IPA_TEST_ENROLL_USER'],
+        enroll_pass: ENV['IPA_TEST_ENROLL_PASS'],
+        hostname: ENV['IPA_TEST_HOSTNAME']
+      }
+
+      if ENV['IPA_TEST_DNS_SERVER']
+        ansible.extra_vars = dnsvars
+      else
+        ansible.extra_vars = nodnsvars
+      end
+
 
     end
 
