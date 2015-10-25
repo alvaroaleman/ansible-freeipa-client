@@ -44,13 +44,14 @@ branch and create pull requests back to the origin ``next`` branch.
 
 ## Integration testing
 
-This role provides integration tests using Vagrant.
+This role provides integration tests using Vagrant:
 
 ```bash
 cp envvars-vagrant.sample envvars
+EDITOR=vim
 $EDITOR envvars
 source envvars
-vagrant up --no provision && vagrant provision
+make test
 ```
 
 ## Author information
