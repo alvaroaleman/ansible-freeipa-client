@@ -44,7 +44,15 @@
   tags: enroll
   become: true
   when: not ipaconf.stat.exists
-  command: "{{ ipa_install_command }} --hostname={{ hostname }} --server={{ server }} --domain={{ domain }} --principal={{ enroll_user }} --password={{ enroll_pass }} --ssh-trust-dns --mkhomedir --enable-dns-updates --unattended"
+  command: "{{ ipa_install_command }}
+          --server={{ server }}
+          --domain={{ domain }}
+          --principal={{ enroll_user }}
+          --password={{ enroll_pass }}
+          --ssh-trust-dns
+          --mkhomedir
+          --enable-dns-updates
+          --unattended
 
 - name: Include Ubuntu specific tasks
   tags: ubuntu
