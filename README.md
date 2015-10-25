@@ -12,11 +12,11 @@ This role allows to join clients to an ipa domain
 
 ## Role Variables
 
-* ``hostname``: The hostname to use for the client (string, mandatory)
 * ``server``: IP/Hostname of IPA server to use (string, mandatory)
 * ``domain``: Domain to use (string, mandatory)
 * ``enroll_user``: Username to enroll host in domain (string, mandatory)
 * ``enroll_pass``: Password to enroll host in domain (string, mandatory)
+* ``hostname``: The hostname to use for the client (string, default: output of ``uname -n``)
 * ``dns_server``: DNS server to configure. This will not do anything if variable is empty (string)
 
 ## Example Playbook

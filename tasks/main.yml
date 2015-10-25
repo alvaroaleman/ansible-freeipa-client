@@ -47,6 +47,7 @@
   when: not ipaconf.stat.exists
   register: enrollment
   command: "{{ ipa_install_command }}
+          {{'--hostname=' + hostname  if hostname is defined else ''}}
           --server={{ server }}
           --domain={{ domain }}
           --principal={{ enroll_user }}
