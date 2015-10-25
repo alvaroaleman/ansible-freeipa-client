@@ -2,38 +2,38 @@
 
 Alvaro Aleman (14):
 
-* Add contribution guidelines
-* Refactor join for readability
-* Remove obsolete serverspec testing
-* Fix checkmode
-* Make hostname parameter optional
-* Add force_join parameter
-* Add no_ntp parameter
-* Fix dependencies
-* Use public ipa server for testing
-* Make Vagrant not set DNS server by default
-* Add Makefile to make testing easier
-* Refactor supported_distribution check for readability
-* Add consistent role tag
 * Move variables to role-specific namespace
+* Add consistent role tag
+* Refactor supported_distribution check for readability
+* Add Makefile to make testing easier
+* Make Vagrant not set DNS server by default
+* Use public ipa server for testing
+* Fix dependencies
+* Add no_ntp parameter
+* Add force_join parameter
+* Make hostname parameter optional
+* Fix checkmode
+* Remove obsolete serverspec testing
+* Refactor join for readability
+* Add contribution guidelines
 
 Casey Labs (2):
 
-* Adding SSH restart to handlers
 * Update Ubuntu tasks
+* Adding SSH restart to handlers
 
 # 1.0.0
 
 Alvaro Aleman (8):
 
-* init
-* Update testing mechanism
-* Add *.swp files to gitignore
-* Fix Vagrant testing
-* Fix naming
-* Disable unused Docker testing
-* Update documentation
 * Populate galaxy info
+* Update documentation
+* Disable unused Docker testing
+* Fix naming
+* Fix Vagrant testing
+* Add *.swp files to gitignore
+* Update testing mechanism
+* init
 
 # 0.0.1
 
