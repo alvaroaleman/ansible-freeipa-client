@@ -1,12 +1,11 @@
 ---
 # tasks file for ansible-freeipa-client
 
-- name: Assert supported platform
+- name: Assert supported distribution
   tags: assertion
   assert:
-    that: (ansible_distribution == 'CentOS' and ansible_distribution_major_version == '7') or
-          (ansible_distribution == 'Fedora' and ansible_distribution_major_version == '22') or
-          ansible_distribution_release == 'trusty'
+    that:
+      - ansible_distribution + '-' + ansible_distribution_major_version in freeipaclient_supported_distributions
 
 - name: Import variables
   tags: import
