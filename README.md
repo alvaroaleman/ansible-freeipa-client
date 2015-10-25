@@ -18,6 +18,7 @@ This role allows to join clients to an ipa domain
 * ``enroll_pass``: Password to enroll host in domain (string, mandatory)
 * ``hostname``: The hostname to use for the client (string, default: output of ``uname -n``)
 * ``dns_server``: DNS server to configure. This will not do anything if variable is empty (string)
+* ``force_join``: Whether to overwrite an already existing host entry of requested name (boolean, default: ``false``)
 
 ## Example Playbook
 
