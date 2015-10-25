@@ -2,6 +2,7 @@
   tags:
     - ubuntu
     - mkhomedir
+    - freeipaclient
   become: true
   lineinfile:
     dest=/etc/pam.d/common-session
@@ -11,7 +12,9 @@
   tags:
     - ubuntu
     - sssd
+    - freeipaclient
   become: true
+  when: freeipaclient_enrollment|changed or freeipaclient_ipaconf.stat.exists
   notify: 
     - restart sssd
     - restart ssh

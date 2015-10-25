@@ -1,4 +1,6 @@
 ---
 - hosts: all
+  vars:
+    freeipaclient_force_join: true
   roles:
     - { role: ansible-freeipa-client }

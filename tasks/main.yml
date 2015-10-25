@@ -1,52 +1,80 @@
 ---
 # tasks file for ansible-freeipa-client
 
-- name: Assert supported platform
-  tags: assertion
+- name: Assert supported distribution
+  tags:
+    - assertion
+    - freeipaclient
   assert:
-    that: (ansible_distribution == 'CentOS' and ansible_distribution_major_version == '7') or
-          (ansible_distribution == 'Fedora' and ansible_distribution_major_version == '22') or
-          ansible_distribution_release == 'trusty'
+    that:
+      - ansible_distribution + '-' + ansible_distribution_major_version in freeipaclient_supported_distributions
 
 - name: Import variables
-  tags: import
+  tags:
+    - import
+    - freeipaclient
   include_vars: "{{ ansible_distribution }}.yml"
 
 - name: Set DNS server
-  tags: dns
+  tags:
+    - dns
+    - freeipaclient
   become: true
-  when: dns_server is defined
+  when: freeipaclient_dns_server is defined
   lineinfile:
     state=present
     regexp='^nameserver.+'
-    line="nameserver {{ dns_server }}"
+    line="nameserver {{ freeipaclient_dns_server }}"
     dest=/etc/resolv.conf
 
 - name: Update cache
-  tags: packagemanagement
+  tags:
+    - packagemanagement
+    - freeipaclient
   become: true
   when: ansible_pkg_mgr  == 'apt'
   action: "{{ ansible_pkg_mgr }} update_cache=yes"
 
 - name: Install required packages
-  tags: packagemanagement
+  tags:
+    - packagemanagement
+    - freeipaclient
   become: true
   with_items: packages
   action: "{{ ansible_pkg_mgr }} state=installed name={{ item }}"
 
 - name: Check if host is enrolled
-  tags: enroll
-  register: ipaconf
+  tags:
+    - enroll
+    - freeipaclient
+  register: freeipaclient_ipaconf
+  always_run: true
   stat:
     path=/etc/ipa/default.conf
 
 - name: Enroll host in domain
-  tags: enroll
+  tags:
+    - enroll
+    - freeipaclient
   become: true
-  when: not ipaconf.stat.exists
-  command: "{{ ipa_install_command }} --hostname={{ hostname }} --server={{ server }} --domain={{ domain }} --principal={{ enroll_user }} --password={{ enroll_pass }} --ssh-trust-dns --mkhomedir --enable-dns-updates --unattended"
+  when: not freeipaclient_ipaconf.stat.exists
+  register: freeipaclient_enrollment
+  command: "{{ freeipaclient_install_command }}
+          {{'--hostname=' + freeipaclient_hostname  if freeipaclient_hostname is defined else ''}}
+          --server={{ freeipaclient_server }}
+          --domain={{ freeipaclient_domain }}
+          --principal={{ freeipaclient_enroll_user }}
+          --password={{ freeipaclient_enroll_pass }}
+          --ssh-trust-dns
+          --mkhomedir
+          --enable-dns-updates
+          --unattended
+          {{ '--no-ntp' if not freeipaclient_enable_ntp else ''}}
+          {{ '--force-join' if freeipaclient_force_join else ''}}"
 
 - name: Include Ubuntu specific tasks
-  tags: ubuntu
+  tags:
+    - ubuntu
+    - freeipaclient
   when: ansible_distribution_release == 'trusty'
   include: ubuntu.yml

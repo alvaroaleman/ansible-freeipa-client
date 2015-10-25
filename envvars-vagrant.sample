@@ -1,5 +1,4 @@
 # General settings for Vagrant
-export RAKE_ANSIBLE_USE_VAGRANT=1
 export ANSIBLE_FREEIPACLIENT_VAGRANT_BOXNAME=ubuntu/trusty64 # name of the vagrant box to use for testing
 export ANSIBLE_FREEIPACLIENT_VAGRANT_PROVIDER=virtualbox     # name of the vagrant provider to use for testing
 #export ANSIBLE_FREEIPACLIENT_VAGRANT_ANSIBLE_TAGS=          # Multiple tags can be specified comma seperated
@@ -10,14 +9,9 @@ export ANSIBLE_FREEIPACLIENT_VAGRANT_ANSIBLE_VERBOSE=        # May contain one t
 export ANSIBLE_FREEIPACLIENT_VAGRANT_ANSIBLE_CHECKMODE=      # 1 to enable, any other value to disable
 
 # Role specifig settings for Vagrant
-export IPA_TEST_SERVER="10.10.10.1"
-export IPA_TEST_DOMAIN="example.com"
-export IPA_TEST_DNS_SERVER="8.8.8.8"
+export IPA_TEST_SERVER="ipa.demo1.freeipa.org"
+export IPA_TEST_DOMAIN="demo1.freeipa.org"
+#export IPA_TEST_DNS_SERVER="8.8.8.8"
 export IPA_TEST_ENROLL_USER=admin
-export IPA_TEST_ENROLL_PASS=foobar
-export IPA_TEST_HOSTNAME="newhost.example.com"
-
-# Settings for the integrated testsuite
-## A user whose existance and sudo privileges shall be tested after host was joined
-export IPA_TEST_EXISTING_USER=example_user
-export IPA_TEST_EXISTING_USER_SUDO_PRIVILEGES='\(ALL : ALL\) ALL' # This is interpreted as regexp, so escaping is necessary
+export IPA_TEST_ENROLL_PASS="Secret123"
+export IPA_TEST_HOSTNAME="ansible-freeipa-client-test.demo1.freeipa.org"
