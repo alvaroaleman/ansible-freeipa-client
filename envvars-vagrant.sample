@@ -9,9 +9,9 @@ export ANSIBLE_FREEIPACLIENT_VAGRANT_ANSIBLE_VERBOSE=        # May contain one t
 export ANSIBLE_FREEIPACLIENT_VAGRANT_ANSIBLE_CHECKMODE=      # 1 to enable, any other value to disable
 
 # Role specifig settings for Vagrant
-export IPA_TEST_SERVER="10.10.10.1"
-export IPA_TEST_DOMAIN="example.com"
+export IPA_TEST_SERVER="ipa.demo1.freeipa.org"
+export IPA_TEST_DOMAIN="demo1.freeipa.org"
 export IPA_TEST_DNS_SERVER="8.8.8.8"
 export IPA_TEST_ENROLL_USER=admin
-export IPA_TEST_ENROLL_PASS=foobar
-export IPA_TEST_HOSTNAME="newhost.example.com"
+export IPA_TEST_ENROLL_PASS="Secret123"
+export IPA_TEST_HOSTNAME="ansible-freeipa-client-test.demo1.freeipa.org"
