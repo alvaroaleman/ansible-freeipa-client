@@ -2,6 +2,7 @@
   tags:
     - ubuntu
     - mkhomedir
+    - freeipaclient
   become: true
   lineinfile:
     dest=/etc/pam.d/common-session
@@ -11,6 +12,7 @@
   tags:
     - ubuntu
     - sssd
+    - freeipaclient
   become: true
   when: enrollment|changed or ipaconf.stat.exists
   notify: 

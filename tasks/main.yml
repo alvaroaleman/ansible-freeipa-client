@@ -2,17 +2,23 @@
 # tasks file for ansible-freeipa-client
 
 - name: Assert supported distribution
-  tags: assertion
+  tags:
+    - assertion
+    - freeipaclient
   assert:
     that:
       - ansible_distribution + '-' + ansible_distribution_major_version in freeipaclient_supported_distributions
 
 - name: Import variables
-  tags: import
+  tags:
+    - import
+    - freeipaclient
   include_vars: "{{ ansible_distribution }}.yml"
 
 - name: Set DNS server
-  tags: dns
+  tags:
+    - dns
+    - freeipaclient
   become: true
   when: dns_server is defined
   lineinfile:
@@ -22,26 +28,34 @@
     dest=/etc/resolv.conf
 
 - name: Update cache
-  tags: packagemanagement
+  tags:
+    - packagemanagement
+    - freeipaclient
   become: true
   when: ansible_pkg_mgr  == 'apt'
   action: "{{ ansible_pkg_mgr }} update_cache=yes"
 
 - name: Install required packages
-  tags: packagemanagement
+  tags:
+    - packagemanagement
+    - freeipaclient
   become: true
   with_items: packages
   action: "{{ ansible_pkg_mgr }} state=installed name={{ item }}"
 
 - name: Check if host is enrolled
-  tags: enroll
+  tags:
+    - enroll
+    - freeipaclient
   register: ipaconf
   always_run: true
   stat:
     path=/etc/ipa/default.conf
 
 - name: Enroll host in domain
-  tags: enroll
+  tags:
+    - enroll
+    - freeipaclient
   become: true
   when: not ipaconf.stat.exists
   register: enrollment
@@ -59,6 +73,8 @@
           {{ '--force-join' if force_join else ''}}"
 
 - name: Include Ubuntu specific tasks
-  tags: ubuntu
+  tags:
+    - ubuntu
+    - freeipaclient
   when: ansible_distribution_release == 'trusty'
   include: ubuntu.yml

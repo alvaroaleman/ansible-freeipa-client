@@ -2,14 +2,18 @@
 # handlers file for ansible-freeipa-client
 #
 - name: restart sssd
-  tags: sssd
+  tags:
+    - sssd
+    - freeipaclient
   become: true
   service:
     name=sssd
     state=restarted
 
 - name: restart ssh
-  tags: sssd
+  tags:
+    - sssd
+    - freeipaclient
   become: true
   service:
     name=ssh
