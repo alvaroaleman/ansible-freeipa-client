@@ -1,2 +1,6 @@
 ---
 # vars file for ansible-freeipa-client
+freeipaclient_supported_distributions:
+  - Ubuntu-14
+  - CentOS-7
+  - Fedora-22

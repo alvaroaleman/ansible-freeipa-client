@@ -38,14 +38,29 @@ Vagrant.configure(VAGRANT_API_VERSION) do |config|
       ::File.directory?('.vagrant/provisioners/ansible/inventory/') do
         ansible.inventory_path = '.vagrant/provisioners/ansible/inventory/'
       end
-      ansible.extra_vars = {
-        server: ENV['IPA_TEST_SERVER'],
-        domain: ENV['IPA_TEST_DOMAIN'],
-        dns_server: ENV['IPA_TEST_DNS_SERVER'],
-        enroll_user: ENV['IPA_TEST_ENROLL_USER'],
-        enroll_pass: ENV['IPA_TEST_ENROLL_PASS'],
-        hostname: ENV['IPA_TEST_HOSTNAME']
+
+      dnsvars = {
+        freeipaclient_server: ENV['IPA_TEST_SERVER'],
+        freeipaclient_domain: ENV['IPA_TEST_DOMAIN'],
+        freeipaclient_dns_server: ENV['IPA_TEST_DNS_SERVER'],
+        freeipaclient_enroll_user: ENV['IPA_TEST_ENROLL_USER'],
+        freeipaclient_enroll_pass: ENV['IPA_TEST_ENROLL_PASS'],
+        freeipaclient_hostname: ENV['IPA_TEST_HOSTNAME']
       }
+      nodnsvars = {
+        freeipaclient_server: ENV['IPA_TEST_SERVER'],
+        freeipaclient_domain: ENV['IPA_TEST_DOMAIN'],
+        freeipaclient_enroll_user: ENV['IPA_TEST_ENROLL_USER'],
+        freeipaclient_enroll_pass: ENV['IPA_TEST_ENROLL_PASS'],
+        freeipaclient_hostname: ENV['IPA_TEST_HOSTNAME']
+      }
+
+      if ENV['IPA_TEST_DNS_SERVER']
+        ansible.extra_vars = dnsvars
+      else
+        ansible.extra_vars = nodnsvars
+      end
+
 
     end
 

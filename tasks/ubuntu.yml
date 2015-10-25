@@ -2,6 +2,7 @@
   tags:
     - ubuntu
     - mkhomedir
+    - freeipaclient
   become: true
   lineinfile:
     dest=/etc/pam.d/common-session
@@ -11,8 +12,12 @@
   tags:
     - ubuntu
     - sssd
+    - freeipaclient
   become: true
-  notify: restart sssd
+  when: freeipaclient_enrollment|changed or freeipaclient_ipaconf.stat.exists
+  notify: 
+    - restart sssd
+    - restart ssh
   lineinfile:
     dest=/etc/sssd/sssd.conf
     regexp='^services.*'

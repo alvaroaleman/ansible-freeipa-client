@@ -6,55 +6,53 @@ This role allows to join clients to an ipa domain
 
 ## Requirements
 
-### Operating System
-
 * CentOS 7
 * Fedora 22
 * Ubuntu Trusty
 
 ## Role Variables
 
-* ``hostname``: The hostname to use for the client (string, mandatory)
-* ``server``: IP/Hostname of IPA server to use (string, mandatory)
-* ``domain``: Domain to use (string, mandatory)
-* ``dns_server``: DNS server to configure. This will not do anything if variable is empty (string)
-* ``enroll_user``: Username to enroll host in domain
-* ``enroll_pass``: Password to enroll host in domain
-
-## Dependencies
-
-None
+* ``freeipaclient_server``: IP/Hostname of IPA server to use (string, mandatory)
+* ``freeipaclient_domain``: Domain to use (string, mandatory)
+* ``freeipaclient_enroll_user``: Username to enroll host in domain (string, mandatory)
+* ``freeipaclient_enroll_pass``: Password to enroll host in domain (string, mandatory)
+* ``freeipaclient_hostname``: The hostname to use for the client (string, default: output of ``uname -n``)
+* ``freeipaclient_dns_server``: DNS server to configure. This will not do anything if variable is empty (string)
+* ``freeipaclient_force_join``: Whether to overwrite an already existing host entry of requested name (boolean, default: ``false``)
+* ``freeipaclient_enable_ntp``: Whether to enable ntp. Kerberos won't work if the time of master and client drift too much (boolean, default: ``true``)
 
 ## Example Playbook
 
-    - hosts: all
-      roles:
-         - { role: ansible-freeipa-client }
+```yaml
+- hosts: all
+  roles:
+     - { role: ansible-freeipa-client }
+```
 
 ## License
 
 GNU AFFERO GENERAL PUBLIC LICENSE Version 3
 
+## Contributing
+
+If you want to contribute to this repository please be aware that this
+project uses a [gitflow](http://nvie.com/posts/a-successful-git-branching-model/)
+workflow with the next release branch called ``next``.
+
+Please fork this repository and create a local branch split off of the ``next``
+branch and create pull requests back to the origin ``next`` branch.
+
 ## Integration testing
 
-This role provides integration tests using the Ruby RSpec/serverspec framework
-with a few drawbacks at the time of writing this documentation.
+This role provides integration tests using Vagrant:
 
-Running integration tests requires a number of dependencies being
-installed. As this role uses Ruby RSpec there is the need to have
-Ruby with rake and bundler available.
-
-    # Install role specific dependencies with bundler
-    bundle install
-
-<!-- -->
-
-    # Run the complete test suite with Vagrant
-    source envvars-vagrant.sample
-    rake suite
-
-The settings required to test this role are configured using environment variables,
-samples can be found in the ``envvars-vagrant.sample`` file.
+```bash
+cp envvars-vagrant.sample envvars
+EDITOR=vim
+$EDITOR envvars
+source envvars
+make test
+```
 
 ## Author information
 
