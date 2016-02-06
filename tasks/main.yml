@@ -69,6 +69,7 @@
           --mkhomedir
           --enable-dns-updates
           --unattended
+          {{ '--all-ip-addresses' if freeipaclient_all_ip_addresses else ''}}
           {{ '--no-ntp' if not freeipaclient_enable_ntp else ''}}
           {{ '--force-join' if freeipaclient_force_join else ''}}"
 

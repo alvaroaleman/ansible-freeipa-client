@@ -2,3 +2,4 @@
 # defaults file for ansible-freeipa-client
 freeipaclient_force_join: false
 freeipaclient_enable_ntp: true
+freeipaclient_all_ip_addresses: true
