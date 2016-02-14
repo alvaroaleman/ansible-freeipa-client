@@ -23,7 +23,6 @@
   when: freeipaclient_dns_server is defined
   lineinfile:
     state=present
-    regexp='^nameserver.+'
     line="nameserver {{ freeipaclient_dns_server }}"
     dest=/etc/resolv.conf
 
