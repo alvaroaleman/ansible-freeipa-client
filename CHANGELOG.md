@@ -1,3 +1,11 @@
+# 1.2.0
+
+Alvaro Aleman (3):
+
+* Fix changelog ordering
+* Allow to register all routable client ips on DNS
+* Dont replace all DNS servers
+
 # 1.1.0
 
 Alvaro Aleman (14):
