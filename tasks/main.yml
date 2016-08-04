@@ -39,8 +39,8 @@
     - packagemanagement
     - freeipaclient
   become: true
-  with_items: packages
-  action: "{{ ansible_pkg_mgr }} state=installed name={{ item }}"
+  with_items: "{{ packages }}"
+  action: "{{ ansible_pkg_mgr }} state=latest name={{ item }}"
 
 - name: Check if host is enrolled
   tags:
@@ -66,7 +66,7 @@
           --password={{ freeipaclient_enroll_pass }}
           --ssh-trust-dns
           --mkhomedir
-          --enable-dns-updates
+          {{ '--enable-dns-updates' if freeipaclient_enable_dns_updates else ''}}
           --unattended
           {{ '--all-ip-addresses' if freeipaclient_all_ip_addresses else ''}}
           {{ '--no-ntp' if not freeipaclient_enable_ntp else ''}}
@@ -76,5 +76,5 @@
   tags:
     - ubuntu
     - freeipaclient
-  when: ansible_distribution_release == 'trusty'
+  when: ansible_os_family == 'Debian'
   include: ubuntu.yml
