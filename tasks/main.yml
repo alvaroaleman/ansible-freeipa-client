@@ -40,7 +40,7 @@
     - freeipaclient
   become: true
   with_items: "{{ packages }}"
-  action: "{{ ansible_pkg_mgr }} state=installed name={{ item }}"
+  action: "{{ ansible_pkg_mgr }} state=latest name={{ item }}"
 
 - name: Check if host is enrolled
   tags:
