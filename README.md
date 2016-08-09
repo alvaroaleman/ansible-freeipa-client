@@ -6,9 +6,9 @@
 - hosts: all
   vars:
     freeipaclient_server: ipa.demo1.freeipa.org
-    freeipa_domain: ipa.demo1.freeipa.org
-    freeipa_enroll_user: admin
-    freeipa_enroll_pass: Secret123
+    freeipaclient_domain: ipa.demo1.freeipa.org
+    freeipaclient_enroll_user: admin
+    freeipaclient_enroll_pass: Secret123
   roles:
      - ansible-freeipa-client
 ```
