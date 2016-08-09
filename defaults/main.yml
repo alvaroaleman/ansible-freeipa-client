@@ -2,5 +2,5 @@
 # defaults file for ansible-freeipa-client
 freeipaclient_force_join: false
 freeipaclient_enable_ntp: true
-freeipaclient_all_ip_addresses: true
+freeipaclient_all_ip_addresses: "{{ true if ansible_distribution_release != 'trusty' else false }}"
 freeipaclient_enable_dns_updates: true
