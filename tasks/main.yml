@@ -22,9 +22,9 @@
   become: true
   when: freeipaclient_dns_server is defined
   lineinfile:
-    state=present
-    line="nameserver {{ freeipaclient_dns_server }}"
-    dest=/etc/resolv.conf
+    state: present
+    line: "nameserver {{ freeipaclient_dns_server }}"
+    dest: /etc/resolv.conf
 
 - name: Update cache
   tags:
@@ -32,7 +32,9 @@
     - freeipaclient
   become: true
   when: ansible_pkg_mgr  == 'apt'
-  action: "{{ ansible_pkg_mgr }} update_cache=yes"
+  apt:
+    update_cache: true
+    cache_valid_time: 3600
 
 - name: Install required packages
   tags:
@@ -40,7 +42,9 @@
     - freeipaclient
   become: true
   with_items: "{{ packages }}"
-  action: "{{ ansible_pkg_mgr }} state=installed name={{ item }}"
+  package:
+    state: present
+    name: "{{ item }}"
 
 - name: Check if host is enrolled
   tags:
@@ -49,7 +53,7 @@
   register: freeipaclient_ipaconf
   always_run: true
   stat:
-    path=/etc/ipa/default.conf
+    path: /etc/ipa/default.conf
 
 - name: Enroll host in domain
   tags:
@@ -59,18 +63,18 @@
   when: not freeipaclient_ipaconf.stat.exists
   register: freeipaclient_enrollment
   command: "{{ freeipaclient_install_command }}
-          {{'--hostname=' + freeipaclient_hostname  if freeipaclient_hostname is defined else ''}}
-          --server={{ freeipaclient_server }}
-          --domain={{ freeipaclient_domain }}
-          --principal={{ freeipaclient_enroll_user }}
-          --password={{ freeipaclient_enroll_pass }}
-          --ssh-trust-dns
-          --mkhomedir
-          {{ '--enable-dns-updates' if freeipaclient_enable_dns_updates else ''}}
-          --unattended
-          {{ '--all-ip-addresses' if freeipaclient_all_ip_addresses else ''}}
-          {{ '--no-ntp' if not freeipaclient_enable_ntp else ''}}
-          {{ '--force-join' if freeipaclient_force_join else ''}}"
+            {{'--hostname=' + freeipaclient_hostname  if freeipaclient_hostname is defined else ''}}
+            --server={{ freeipaclient_server }}
+            --domain={{ freeipaclient_domain }}
+            --principal={{ freeipaclient_enroll_user }}
+            --password={{ freeipaclient_enroll_pass }}
+            --ssh-trust-dns
+            --mkhomedir
+            {{ '--enable-dns-updates' if freeipaclient_enable_dns_updates else ''}}
+            --unattended
+            {{ '--all-ip-addresses' if freeipaclient_all_ip_addresses else ''}}
+            {{ '--no-ntp' if not freeipaclient_enable_ntp else ''}}
+            {{ '--force-join' if freeipaclient_force_join else ''}}"
 
 - name: Include Ubuntu specific tasks
   tags:
