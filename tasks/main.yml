@@ -41,7 +41,7 @@
     - packagemanagement
     - freeipaclient
   become: true
-  with_items: "{{ packages }}"
+  with_items: "{{ freeipaclient_packages }}"
   package:
     state: present
     name: "{{ item }}"
