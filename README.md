@@ -1,5 +1,18 @@
 # ansible-freeipa-client
 
+## Synopsis
+
+```yaml
+- hosts: all
+  vars:
+    freeipaclient_server: ipa.demo1.freeipa.org
+    freeipa_domain: ipa.demo1.freeipa.org
+    freeipa_enroll_user: admin
+    freeipa_enroll_pass: Secret123
+  roles:
+     - ansible-freeipa-client
+```
+
 ## Description
 
 This role allows to join clients to an ipa domain
@@ -7,7 +20,7 @@ This role allows to join clients to an ipa domain
 ## Requirements
 
 * CentOS 7
-* Fedora 22
+* Fedora 24
 * Ubuntu Trusty
 
 ## Role Variables
@@ -22,13 +35,6 @@ This role allows to join clients to an ipa domain
 * ``freeipaclient_enable_ntp``: Whether to enable ntp. Kerberos won't work if the time of master and client drift too much (boolean, default: ``true``)
 * ``freeipaclient_all_ip_addresses``: Whether to add all routable ip addresses to DNS (boolean, default: ``true if not Trusty, else false``)
 
-## Example Playbook
-
-```yaml
-- hosts: all
-  roles:
-     - { role: ansible-freeipa-client }
-```
 
 ## License
 
