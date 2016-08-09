@@ -39,29 +39,6 @@ Vagrant.configure(VAGRANT_API_VERSION) do |config|
         ansible.inventory_path = '.vagrant/provisioners/ansible/inventory/'
       end
 
-      dnsvars = {
-        freeipaclient_server: ENV['IPA_TEST_SERVER'],
-        freeipaclient_domain: ENV['IPA_TEST_DOMAIN'],
-        freeipaclient_dns_server: ENV['IPA_TEST_DNS_SERVER'],
-        freeipaclient_enroll_user: ENV['IPA_TEST_ENROLL_USER'],
-        freeipaclient_enroll_pass: ENV['IPA_TEST_ENROLL_PASS'],
-        freeipaclient_hostname: ENV['IPA_TEST_HOSTNAME']
-      }
-      nodnsvars = {
-        freeipaclient_server: ENV['IPA_TEST_SERVER'],
-        freeipaclient_domain: ENV['IPA_TEST_DOMAIN'],
-        freeipaclient_enroll_user: ENV['IPA_TEST_ENROLL_USER'],
-        freeipaclient_enroll_pass: ENV['IPA_TEST_ENROLL_PASS'],
-        freeipaclient_hostname: ENV['IPA_TEST_HOSTNAME']
-      }
-
-      if ENV['IPA_TEST_DNS_SERVER']
-        ansible.extra_vars = dnsvars
-      else
-        ansible.extra_vars = nodnsvars
-      end
-
-
     end
 
     d.vm.provider :virtualbox do |v|
