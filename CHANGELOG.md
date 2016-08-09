@@ -1,3 +1,25 @@
+# 1.3.0
+
+Alvaro Aleman (10):
+
+* Use complex args style
+* More style
+* Fix defaults for Trusty
+* Fix variable namespace for package var
+* Update supported distros
+* Update sample playbook
+* Set test variables in playbook instead of Vagrantfile
+* Add assertion for required variables
+* Update role name in README
+* Add xenial to supported distros
+
+Tomas Dobrovolny (4):
+
+* Make DNS updates optional
+* Correct syntax using variable packages in with_items
+* Run Ubuntu specific tasks for all Debians
+* Add Ubuntu-16 to supported distributions
+
 # 1.2.0
 
 Alvaro Aleman (3):
