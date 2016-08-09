@@ -10,7 +10,7 @@
     freeipaclient_enroll_user: admin
     freeipaclient_enroll_pass: Secret123
   roles:
-     - ansible-freeipa-client
+     - alvaroaleman.freeipa-client
 ```
 
 ## Description
