@@ -4,4 +4,4 @@ freeipaclient_supported_distributions:
   - Ubuntu-14
   - Ubuntu-16
   - CentOS-7
-  - Fedora-22
+  - Fedora-24
