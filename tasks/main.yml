@@ -61,20 +61,20 @@
     - freeipaclient
   become: true
   when: not freeipaclient_ipaconf.stat.exists
-  register: freeipaclient_enrollment
-  command: "{{ freeipaclient_install_command }}
-            {{'--hostname=' + freeipaclient_hostname  if freeipaclient_hostname is defined else ''}}
-            --server={{ freeipaclient_server }}
-            --domain={{ freeipaclient_domain }}
-            --principal={{ freeipaclient_enroll_user }}
-            --password={{ freeipaclient_enroll_pass }}
-            --ssh-trust-dns
-            --mkhomedir
-            {{ '--enable-dns-updates' if freeipaclient_enable_dns_updates else ''}}
-            --unattended
-            {{ '--all-ip-addresses' if freeipaclient_all_ip_addresses else ''}}
-            {{ '--no-ntp' if not freeipaclient_enable_ntp else ''}}
-            {{ '--force-join' if freeipaclient_force_join else ''}}"
+  command: >
+    {{ freeipaclient_install_command }}
+    {{'--hostname=' + freeipaclient_hostname  if freeipaclient_hostname is defined else ''}}
+    --server={{ freeipaclient_server }}
+    --domain={{ freeipaclient_domain }}
+    --principal={{ freeipaclient_enroll_user }}
+    --password={{ freeipaclient_enroll_pass }}
+    --ssh-trust-dns
+    --mkhomedir
+    {{ '--enable-dns-updates' if freeipaclient_enable_dns_updates else ''}}
+    --unattended
+    {{ '--all-ip-addresses' if freeipaclient_all_ip_addresses else ''}}
+    {{ '--no-ntp' if not freeipaclient_enable_ntp else ''}}
+    {{ '--force-join' if freeipaclient_force_join else ''}}
 
 - name: Include Ubuntu specific tasks
   tags:
