@@ -62,7 +62,6 @@
     - enroll
     - freeipaclient
   register: freeipaclient_ipaconf
-  always_run: true
   stat:
     path: /etc/ipa/default.conf
 
