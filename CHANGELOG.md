@@ -1,3 +1,8 @@
+Remo Wenger (2):
+
+* Add support for RHEL
+* Add RHEL to Requirements
+
 # 1.3.1
 
 fxfitz (2):
