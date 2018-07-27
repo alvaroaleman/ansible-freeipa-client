@@ -74,7 +74,7 @@
   when: not freeipaclient_ipaconf.stat.exists
   command: >
     {{ freeipaclient_install_command }}
-    {{'--hostname=' + freeipaclient_hostname  if freeipaclient_hostname is defined else ''}}
+    {{'--hostname=' + freeipaclient_hostname  if freeipaclient_hostname is defined else '--hostname=' + ansible_nodename }}
     --server={{ freeipaclient_server }}
     --domain={{ freeipaclient_domain }}
     --principal={{ freeipaclient_enroll_user }}
