@@ -24,6 +24,7 @@ This role allows to join clients to an ipa domain
 * Fedora 24
 * Ubuntu Trusty
 * Ubuntu Xenial
+* Ubuntu Bionic
 
 ## Role Variables
 
