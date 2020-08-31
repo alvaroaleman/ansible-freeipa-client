@@ -4,6 +4,7 @@ freeipaclient_supported_distributions:
   - Ubuntu-14
   - Ubuntu-16
   - Ubuntu-18
+  - Ubuntu-20
   - CentOS-7
   - RedHat-7
   - Fedora-24
