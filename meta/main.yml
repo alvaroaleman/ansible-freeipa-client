@@ -15,6 +15,11 @@ galaxy_info:
     versions:
     - trusty
     - xenial
+    - bionic
+    - focal
+  - name: Debian
+    versions:
+    - 10
   categories:
   - system
   - identity
