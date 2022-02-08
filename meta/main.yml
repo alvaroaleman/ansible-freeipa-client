@@ -12,6 +12,9 @@ galaxy_info:
   - name: Fedora
     versions:
     - 24
+  - name: Rocky
+    versions:
+    - 8
   - name: AlmaLinux
     versions:
     - 8

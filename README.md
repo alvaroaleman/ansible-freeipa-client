@@ -21,10 +21,15 @@ This role allows to join clients to an ipa domain
 
 * CentOS 7
 * Red Hat Enterprise Linux 7
+* Red Hat Enterprise Linux 8
+* AlmaLinux 8
+* Rocky8
 * Fedora 24
-* Ubuntu Trusty
-* Ubuntu Xenial
-* Ubuntu Bionic
+* Debian Buster (10)
+* Ubuntu Trusty (14)
+* Ubuntu Xenial (16)
+* Ubuntu Bionic (18)
+* Ubuntu Focal (20)
 
 ## Role Variables
 
