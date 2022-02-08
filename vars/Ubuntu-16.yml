@@ -1,0 +1,4 @@
+freeipaclient_install_command: '/usr/sbin/ipa-client-install'
+freeipaclient_packages:
+ - freeipa-client
+ - dnsutils
